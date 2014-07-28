@@ -1,4 +1,5 @@
 ################ example script for bipartite_val_state
+#'@export
 getCombinations <- function(edgel, co.occ){
   #require(plyr);
   el.val1 <- plyr::ddply(as.data.frame(edgel), .variables=c("a1", "a2"), summarize, comb=paste(co.occ, collapse=","));
@@ -20,7 +21,7 @@ getCombinations <- function(edgel, co.occ){
   return(list(sym.comb=freq, pairs=pairs, co.occ=co.occ)); 
   #return(list(sym.comb=sym.comb, pairs=pairs, co.occ=co.occ)); 
 }
-
+#'@export
 getCoOccMatrices <- function(sym.comb, co.occ){
   #### obtaining numeric indices from the combinations
   mat.strat <- strsplit(sym.comb, split=",");
@@ -31,7 +32,7 @@ getCoOccMatrices <- function(sym.comb, co.occ){
     m[as.matrix(co.occ)[mat.strat[[i]],, drop=F]] <- 1; 
     m;});   
 }
-
+#'@export
 writeCombMat <- function(sym.comb, pairs, s=3, outfile="./sym_combinations.txt"){
   write("keys for the co-occurrences of strategies:\n", file = outfile);
   co.occ <- expand.grid(a1=seq_len(s), a2=seq_len(s))
@@ -47,5 +48,6 @@ writeCombMat <- function(sym.comb, pairs, s=3, outfile="./sym_combinations.txt")
     suppressWarnings(write.table(pairs[[i]], file=outfile, col.names=T, row.names=F, quote=F, sep="\t", append=T));
     cat("\n-------------------------------------\n", file=outfile, append=T);
   }
+  return(0);
   
 }

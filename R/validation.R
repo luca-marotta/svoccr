@@ -1,3 +1,4 @@
+#'@export
 bipartite_val<-function(infile="./input.txt", s=2, outfile="./validation.txt"){
   edgel <- read.table(infile, header=F, sep="\t");
   colnames(edgel) <- c("agent", "day", "start", "end", "activity");

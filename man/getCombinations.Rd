@@ -2,8 +2,8 @@
 \alias{getCombinations}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-%%  ~~function to do ... ~~
 getCombinations
+%%  ~~function to do ... ~~
 }
 \description{
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
@@ -53,7 +53,6 @@ getCombinations(edgel, co.occ)
 ## The function is currently defined as
 function (edgel, co.occ) 
 {
-    require(plyr)
     el.val1 <- plyr::ddply(as.data.frame(edgel), .variables = c("a1", 
         "a2"), summarize, comb = paste(co.occ, collapse = ","))
     sym.co.occ <- match(data.frame(t(co.occ)), data.frame(t(co.occ)[2:1, 

@@ -2,14 +2,14 @@
 \alias{bipartite_val}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-%%  ~~function to do ... ~~
 bipartite_val
+%%  ~~function to do ... ~~
 }
 \description{
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
 }
 \usage{
-bipartite_val(infile = "~/input.txt", s = 2, outfile = "~/validation.txt")
+bipartite_val(infile = "./input.txt", s = 2, outfile = "./validation.txt")
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -54,7 +54,7 @@ bipartite_val(infile = "~/input.txt", s = 2, outfile = "~/validation.txt")
 ##--	or do  help(data=index)  for the standard data sets.
 
 ## The function is currently defined as
-function (infile = "~/input.txt", s = 2, outfile = "~/validation.txt") 
+function (infile = "./input.txt", s = 2, outfile = "./validation.txt") 
 {
     edgel <- read.table(infile, header = F, sep = "\t")
     colnames(edgel) <- c("agent", "day", "start", "end", "activity")
@@ -69,7 +69,6 @@ function (infile = "~/input.txt", s = 2, outfile = "~/validation.txt")
     ns <- nrow(co.occ)
     df <- edgel[!duplicated(edgel[, 1]), c("agent", "start", 
         "end")]
-    require(igraph)
     hyper_pvalue <- function(sizeA, sizeB, inter.size, totsize) {
         if (inter.size == 0) 
             return(1)

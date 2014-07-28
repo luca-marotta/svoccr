@@ -6,5 +6,7 @@ Version: 0.8
 Date: 2014-07-24
 Author: Luca Marotta <marotta.luca@gmail.com>
 Maintainer: Luca Marotta <marotta.luca@gmail.com>
-Imports: igraph, plyr
+Imports:
+    igraph,
+    plyr
 License: MIT
