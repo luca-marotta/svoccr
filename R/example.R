@@ -31,3 +31,21 @@ getCoOccMatrices <- function(sym.comb, co.occ){
     m[as.matrix(co.occ)[mat.strat[[i]],, drop=F]] <- 1; 
     m;});   
 }
+
+writeCombMat <- function(sym.comb, pairs, s=3, outfile="./sym_combinations.txt"){
+  write("keys for the co-occurrences of strategies:\n", file = outfile);
+  co.occ <- expand.grid(a1=seq_len(s), a2=seq_len(s))
+  states.key <- data.frame(co.occ, key=seq_len(nrow(co.occ)));
+  suppressWarnings(write.table(states.key, file=outfile, quote=F, row.names=F, sep="\t", append=T));
+  mat <- getCoOccMatrices(names(sym.comb), co.occ);
+  write("Strategy Combinations. Please refer to the key up above for the co-occurence code.\n", append=T, file=outfile);    
+  for(i in seq(sym.comb)){
+    cat("Combination", names(sym.comb)[i], "frequency:", sym.comb[i], "\n", file=outfile, append=T, sep=" ");
+    cat("Combination Matrix representation:\n", file=outfile, append=T, sep=" ");
+    write.table(mat[[i]], file=outfile, col.names=F, row.names=F, quote=F, append=T);
+    cat("Combination edgelist:\n", file=outfile, append=T);
+    suppressWarnings(write.table(pairs[[i]], file=outfile, col.names=T, row.names=F, quote=F, sep="\t", append=T));
+    cat("\n-------------------------------------\n", file=outfile, append=T);
+  }
+  
+}
